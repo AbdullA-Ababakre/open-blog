@@ -51,9 +51,21 @@ React has five built-in methods that gets called, in this order, when a componen
 > This is the first method that is called when a component gets updated.This is still the natural place to set the state object based on the initial props.
 
 
-- shouldComponentUpdate()
+- shouldComponentUpdate(nextProps,nextState)
 
 > In the shouldComponentUpdate() method you can return a Boolean value that specifies whether React should continue with the rendering or not.The default value is true.
+
+take an example,below:
+
+````
+     shouldComponentUpdate(nextProps,nextState){
+         if(nextProps.persons !== this.props.persons){
+             return true;
+         }else{
+             return false;
+         }
+     }
+````
 
 - render() 
 
