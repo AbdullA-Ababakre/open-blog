@@ -14,7 +14,7 @@ React.memo
 
 #### [React.pureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent)
 
-if we check all the components ,we do not need to write shouldComponentUpdate , there is easier way to write ,it is React.pureComponent.
+if we check all the props ,we do not need to write shouldComponentUpdate , there is easier way to write ,it is React.pureComponent.
 
 React.PureComponent is similar to React.Component. The difference between them is that React.Component doesn’t implement shouldComponentUpdate(), but React.PureComponent implements it with a shallow prop and state comparison.
 

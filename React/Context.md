@@ -50,3 +50,7 @@ in class
 
 
 static contextType is for class components and useContext is for function component.
+
+
+
+
