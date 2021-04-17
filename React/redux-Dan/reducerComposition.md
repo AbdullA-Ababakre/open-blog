@@ -154,3 +154,16 @@ const combineReducers = (reducers) => {
   };
 };
 ````
+
+
+````
+function combineReducers(obj) {  
+  return (state = {}, action) => {
+    const newState = {};
+    for (let key in obj) {
+      newState[key] = obj[key](state[key], action);
+    }
+    return newState;
+  }
+}
+````
