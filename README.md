@@ -2,4 +2,7 @@
 Some blogs ......
 
 
-this is the main branch
+
+连猴子都懂的Git命令
+
+add 把变更录入到索引中
