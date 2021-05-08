@@ -27,3 +27,23 @@ in class component ,we use componentWillUnmount
 
 Time : it runs BEFORE the main useEffect function runs , but AFTER the (first) render cycle!
 
+
+
+### side effect
+
+> these tasks must happen outside of the normal component evaluation and render cycle - especially since they might block/delay rendering(e.g. Http request)
+
+- store data in the browser storage
+- http request
+- set & manage timers
+
+### useEffect
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210505091419427.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0FidWR1bGFfXw==,size_16,color_FFFFFF,t_70)
+
+#### dependencies
+
+https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/25871518#questions
+
+
+
