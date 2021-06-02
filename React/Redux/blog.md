@@ -9,6 +9,15 @@ Redux is a predictable state container for JavaScript apps. To rephrase that, it
 
 at first, let's assume a context,we want to make a login  logout function,and there is a state indicating the state of the user logging status.And we want to get this state in many components. We know props,but it is one way data transfering. So we need to create a sort of global state where the state can be updated and persists to all other components . 
 
+### why not Context 
+
+we know that context is also a application-wide state management tool,but it has some potential disadvantages compared to Redux.
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210529085619335.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0FidWR1bGFfXw==,size_16,color_FFFFFF,t_70)
+
+
+
+
 ### When to use it
 
 The below pic summarized when we have to use Redux. To sum,there are some states we need to use in many components and it is too complicatd to do with props（transfering from parent to child ,from child to grandchild...)
