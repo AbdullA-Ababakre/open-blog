@@ -13,8 +13,11 @@ at first, let's assume a context,we want to make a login  logout function,and th
 
 we know that context is also a application-wide state management tool,but it has some potential disadvantages compared to Redux.
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210529085619335.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0FidWR1bGFfXw==,size_16,color_FFFFFF,t_70)
+- Complex Setup/Management
 
+- performance
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210529085619335.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0FidWR1bGFfXw==,size_16,color_FFFFFF,t_70)
 
 
 
@@ -31,6 +34,39 @@ for some local UI state , we do not need to use Redux ,but for some states that 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217170006152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0FidWR1bGFfXw==,size_16,color_FFFFFF,t_70)
 
 
+### basic demo of redux
+
+````
+const redux = require('redux');
+
+const counterReducer = (state = { counter: 0 }, action) => {
+    if(action.type==='Add'){
+        return {
+            counter: state.counter +1
+        }
+    }
+    return {
+        counter: state.counter 
+    };
+}
+
+const store = redux.createStore(counterReducer);
+
+const subscribeCounter = () => {
+    let state = store.getState();
+    console.log("hello", state);
+}
+
+// It lets you register a callback that the Redux store will call any time an action has been dispatched, so that you can update the UI of your application. It will reflect the current application state.
+store.subscribe(subscribeCounter);
+
+store.dispatch({
+    type:'Add'
+});
+
+````
+
+
 ### pricipals of Redux
 
 - whether your app is a really simple one like a counter example, or a complex application with a lot of UI, and change of state, you are going to represent the whole state of your application as a single JavaScript object.
@@ -39,7 +75,7 @@ for some local UI state , we do not need to use Redux ,but for some states that 
 
     the only way to change the state is by dispatching an action. action is the minimal discription of the change to the data.
 
-    below,some of the examples of how to change the sate without mutating the old state.When the state is array or object , it is too easy to make mistakes because of the deep clone and shallow clone problems ,so here ,I summarized how to change array and object states without mutating the old state in the reducers.
+    below,some of the examples of how to change the sate without mutating the old state.When the state is array or object , it is too easy to make mistakes because of the deep clone and shallow clone problems ,so here ,I summarized how to change array and object states without mutating(*will not be merge,but override*) the old state in the reducers.
    
   - #### Array
 
