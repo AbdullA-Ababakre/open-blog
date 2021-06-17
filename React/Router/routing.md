@@ -92,7 +92,17 @@ another solving solution is to use the activeClassName property,
 
 
 
+### The difference between the a tag and Link tag 
+
+when we use the a tag , the page will be refereshed ,we are sending a new request and getting a new page . we will lose all the state that we are managing. we can just write in this way and prevent the default behavior of refereshing the page , but react router provides us a better way with **Link**
+
+````
+<a href="/welcome">welcome page </a>   // leades to refereshing
+<Link to="/welcome">welcome page</Link> // without refereshing
+<NavLink activeClassName="active" to="/welcome">welcome page</NavLink> //the same as Link ,but has another good feature , activeClassName ,which triggered when we hover on the navlink
+````
 ### Nested Routes
+
 
 
 
