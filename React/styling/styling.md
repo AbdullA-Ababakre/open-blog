@@ -6,7 +6,7 @@ usually we just write a .css file then just import it in our jsx file.
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210102082401382.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0FidWR1bGFfXw==,size_16,color_FFFFFF,t_70)
 
-when we are using inline stylig,the benefit is that we can use it as a javascript variable and we can change it with conditional statements.as it suggested in the below example.
+when we are using inline stylig,the benefit is that we can use it as a javascript variable and we can change it with conditional statements . as it suggested in the below example.
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/2021010716154697.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0FidWR1bGFfXw==,size_16,color_FFFFFF,t_70)
 

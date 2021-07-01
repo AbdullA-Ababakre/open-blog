@@ -9,6 +9,20 @@ Redux is a predictable state container for JavaScript apps. To rephrase that, it
 
 at first, let's assume a context,we want to make a login  logout function,and there is a state indicating the state of the user logging status.And we want to get this state in many components. We know props,but it is one way data transfering. So we need to create a sort of global state where the state can be updated and persists to all other components . 
 
+### why not Context 
+
+we know that context is also a application-wide state management tool,but it has some potential disadvantages compared to Redux.
+
+- Complex Setup/Management
+
+
+
+- performance
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210529085619335.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0FidWR1bGFfXw==,size_16,color_FFFFFF,t_70)
+
+
+
 ### When to use it
 
 The below pic summarized when we have to use Redux. To sum,there are some states we need to use in many components and it is too complicatd to do with props（transfering from parent to child ,from child to grandchild...)
@@ -17,155 +31,11 @@ The below pic summarized when we have to use Redux. To sum,there are some states
 
 for some local UI state , we do not need to use Redux ,but for some states that will be used in more than one props ,it is better to use Redux.
 
-### How Redux work
-
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217170006152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0FidWR1bGFfXw==,size_16,color_FFFFFF,t_70)
-
-
-### pricipals of Redux
-
-- whether your app is a really simple one like a counter example, or a complex application with a lot of UI, and change of state, you are going to represent the whole state of your application as a single JavaScript object.
-
-- the state is read only
-
-    the only way to change the state is by dispatching an action. action is the minimal discription of the change to the data.
-
-    below,some of the examples of how to change the sate without mutating the old state.When the state is array or object , it is too easy to make mistakes because of the deep clone and shallow clone problems ,so here ,I summarized how to change array and object states without mutating the old state in the reducers.
-   
-  - #### Array
-
- ````
-/*
- * Open the console to see
- * that all tests have passed.
- */
-
-const addCounter = (list) => {
-  return [...list, 0];
-};
-
-const removeCounter = (list, index) => {
-  return [
-    ...list.slice(0, index),
-    ...list.slice(index + 1)
-  ];
-};
-
-const incrementCounter = (list, index) => {
-  return [
-    ...list.slice(0, index),
-    list[index] + 1,
-    ...list.slice(index + 1)
-  ];
-};
-
-const testAddCounter = () => {
-  const listBefore = [];
-  const listAfter = [0];
-  
-  deepFreeze(listBefore);
-  
-  expect(
-    addCounter(listBefore)
-  ).toEqual(listAfter);
-};
-
-const testRemoveCounter = () => {
-  const listBefore = [0, 10, 20];
-  const listAfter = [0, 20];
-  
-  deepFreeze(listBefore);
-  
-  expect(
-    removeCounter(listBefore, 1)
-  ).toEqual(listAfter);
-};
-
-const testIncrementCounter = () => {
-  const listBefore = [0, 10, 20];
-  const listAfter = [0, 11, 20];
-  
-  deepFreeze(listBefore);
-  
-  expect(
-    incrementCounter(listBefore, 1)
-  ).toEqual(listAfter);
-};
-
-testAddCounter();
-testRemoveCounter();
-testIncrementCounter();
-
-console.log('All tests passed.') || displayInPreview('All tests passed.');
- ````
-  - #### Object
-
-There are two ways to change the object without mutations. Like Object.assign and es7 seperate operator.
-
-````
-/*
- * Open the console to see
- * that the tests have passed.
- */
-
-const toggleTodo = (todo) => {
-  return {
-    ...todo,
-    completed: !todo.completed
-  };
-};
-
-const toggleTodo = (todo) => {
-  return Object.assign({},todo,{
-      completed:!todo.completed
-  })
-};
-
-const testToggleTodo = () => {
-  const todoBefore = {
-    id: 0,
-    text: 'Learn Redux',
-    completed: false
-  };
-  const todoAfter = {
-    id: 0,
-    text: 'Learn Redux',
-    completed: true
-  };
-  
-  deepFreeze(todoBefore);
-  
-  expect(
-    toggleTodo(todoBefore)
-  ).toEqual(todoAfter);
-};
-
-testToggleTodo();
-console.log('All tests passed.') || displayInPreview('All tests passed.');
-````
-
-- to describe state mutations , you have to write a pure function which receives the previous state and describe the change to the previous state and return a new state.This function is called 'reducer'.
-
-````
-const counter = (state = 0, action) => {
-  switch (action.type) {
-    case 'INCREMENT':
-      return state + 1;
-    case 'DECREMENT':
-      return state - 1;
-    default:
-      return state;
-  }
-} 
-````
-
-above pure function counter is the reducer.
-
 ### Some terms
 
 - Reducer
 
-A Reducer is a pure function that takes the state of an application and action as arguments and returns a new state
+A Reducer is a pure,side-effect free,synchronous function that takes the state of an application and action as arguments and returns a new state
 below is the reducer of the counter example .
 
 ````
@@ -186,14 +56,15 @@ const counter = (state = 0, action) => {
   The minimal descrition of the change to the state.
 
 - Store
-
+    
+    the central place(object) where we store the data .
     #### connecting the store 
 
     This store binds together the three principles of Redux. It holds the current application's state object. It lets you dispatch actions. When you create it, you need to specify the reducer that tells how state is updated with actions.
 
 ````
 const { createStore } = Redux;
-const store = createStore(counter);
+const store = createStore(counter);  // counter is the reducer.
 ````
 
 we want to know the implemention of the createStore from scratch.
@@ -300,6 +171,187 @@ function combineReducers(obj) {
     return newState;
   }
 }
+````
+
+
+
+### pricipals of Redux
+
+- whether your app is a really simple one like a counter example, or a complex application with a lot of UI, and change of state, you are going to represent the whole state of your application as a single JavaScript object.
+
+- the state is read only
+
+    the only way to change the state is by dispatching an action. action is the minimal discription of the change to the data.
+
+    below,some of the examples of how to change the sate without mutating the old state.When the state is array or object , it is too easy to make mistakes because of the deep clone and shallow clone problems ,so here ,I summarized how to change array and object states without mutating(*will not be merge,but override*) the old state in the reducers.
+   
+  - #### Array
+
+ ````
+/*
+ * Open the console to see
+ * that all tests have passed.
+ */
+
+const addCounter = (list) => {
+  return [...list, 0];
+};
+
+const removeCounter = (list, index) => {
+  return [
+    ...list.slice(0, index),
+    ...list.slice(index + 1)
+  ];
+};
+
+const incrementCounter = (list, index) => {
+  return [
+    ...list.slice(0, index),
+    list[index] + 1,
+    ...list.slice(index + 1)
+  ];
+};
+
+const testAddCounter = () => {
+  const listBefore = [];
+  const listAfter = [0];
+  
+  deepFreeze(listBefore);
+  
+  expect(
+    addCounter(listBefore)
+  ).toEqual(listAfter);
+};
+
+const testRemoveCounter = () => {
+  const listBefore = [0, 10, 20];
+  const listAfter = [0, 20];
+  
+  deepFreeze(listBefore);
+  
+  expect(
+    removeCounter(listBefore, 1)
+  ).toEqual(listAfter);
+};
+
+const testIncrementCounter = () => {
+  const listBefore = [0, 10, 20];
+  const listAfter = [0, 11, 20];
+  
+  deepFreeze(listBefore);
+  
+  expect(
+    incrementCounter(listBefore, 1)
+  ).toEqual(listAfter);
+};
+
+testAddCounter();
+testRemoveCounter();
+testIncrementCounter();
+
+console.log('All tests passed.') || displayInPreview('All tests passed.');
+ ````
+
+ - #### Object
+
+There are two ways to change the object without mutations. Like Object.assign and es7 seperate operator.
+
+````
+/*
+ * Open the console to see
+ * that the tests have passed.
+ */
+
+const toggleTodo = (todo) => {
+  return {
+    ...todo,
+    completed: !todo.completed
+  };
+};
+
+const toggleTodo = (todo) => {
+  return Object.assign({},todo,{
+      completed:!todo.completed
+  })
+};
+
+const testToggleTodo = () => {
+  const todoBefore = {
+    id: 0,
+    text: 'Learn Redux',
+    completed: false
+  };
+  const todoAfter = {
+    id: 0,
+    text: 'Learn Redux',
+    completed: true
+  };
+  
+  deepFreeze(todoBefore);
+  
+  expect(
+    toggleTodo(todoBefore)
+  ).toEqual(todoAfter);
+};
+
+testToggleTodo();
+console.log('All tests passed.') || displayInPreview('All tests passed.');
+````
+
+- to describe state mutations , you have to write a pure function which receives the previous state and describe the change to the previous state and return a new state.This function is called 'reducer'.
+
+````
+const counter = (state = 0, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
+  }
+} 
+````
+
+above pure function counter is the reducer.
+
+### How Redux work
+
+the below pic will illustrate how redux work.
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217170006152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0FidWR1bGFfXw==,size_16,color_FFFFFF,t_70)
+
+
+### basic demo of redux
+
+````
+const redux = require('redux');
+
+const counterReducer = (state = { counter: 0 }, action) => {
+    if(action.type==='Add'){
+        return {
+            counter: state.counter +1
+        }
+    }
+    return {
+        counter: state.counter 
+    };
+}
+
+const store = redux.createStore(counterReducer);
+
+const subscribeCounter = () => {
+    let state = store.getState();
+    console.log("hello", state);
+}
+
+// It lets you register a callback that the Redux store will call any time an action has been dispatched, so that you can update the UI of your application. It will reflect the current application state.
+store.subscribe(subscribeCounter);
+
+store.dispatch({
+    type:'Add'
+});
+
 ````
 
 
