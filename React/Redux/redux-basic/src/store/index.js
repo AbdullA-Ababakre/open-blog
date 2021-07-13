@@ -7,7 +7,7 @@ import { createStore } from 'redux'
 // used a type of tool for redux ,which will simplifies the useage of redux.
 import { configureStore } from '@reduxjs/toolkit'
 import { counterReducer } from './counterReducer'
-import {authSliceReducer} from './authReducer'
+import { authSliceReducer } from './authReducer'
 
 
 

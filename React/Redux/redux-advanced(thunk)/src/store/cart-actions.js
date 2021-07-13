@@ -2,11 +2,11 @@ import { uiSliceActions } from './ui-slice'
 import { cartActions } from './cart-slice'
 
 export const fetchData = () => {
-    
+
     return async (dispatch) => {
-     
+
         const fetchCartData = async () => {
-            
+
             const response = await fetch('https://movie-1fd5c-default-rtdb.firebaseio.com/cart.json');
             if (!response.ok) {
                 throw new Error('Could not fetch cart data');
@@ -19,8 +19,8 @@ export const fetchData = () => {
         try {
             const cartData = await fetchCartData();
             dispatch(cartActions.replaceCart({
-                items:cartData.items || [],
-                totalQuantity:cartData.totalQuantity
+                items: cartData.items || [],
+                totalQuantity: cartData.totalQuantity
             }));
         } catch (error) {
             dispatch(uiSliceActions.showNotification({
@@ -30,6 +30,7 @@ export const fetchData = () => {
             }))
         }
     }
+
 }
 
 export const sendCardData = (cart) => {
