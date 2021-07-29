@@ -9,7 +9,6 @@ Proxy enalbes us to intercept and customize operations performed on objects (suc
 > > Metaprogramming is writing a program which outputs another program , which enables one to intercept and define custome behavior for fundamental language operations(e.g. property lookup, assignment, enumeration, function invocation, etc). 
 
 
-
 ## The basic syntax
 
 
