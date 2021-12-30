@@ -58,3 +58,30 @@ server.listen(3001);
 ```
 
 we can see that in the localhost:3001 , there is the h1 text 'My First Page '
+
+### express
+
+express is a fast, unopinionated, minimalist web framework for Node.js.
+
+- minimal
+
+the express philosophy is to provide the minimal layer between your brain and the server . express provides a minimal framework,and you can add in different parts of express functionality as needed.
+
+- flexible
+  the basic pattern of the express is accept a request from a client and returns an http response.
+
+- web application framework
+
+server side part of web appplication framework which different from the single page application framework like react,vue ,angular etc.
+
+    - server side application 
+      pages in the application are rendered on the server (as HTML,CSS,images and other multimedia assets,and Javascript) and sent to the client.
+    
+    - client side application
+      by contrast,renders most of the application user interface from an initial application bundle that is sent only once.that is ,the browser receives the initial html ,it uses the javascript to modify the DOM dynamically and doesn/t need to rely on the server to display new pages.
+
+      The only difference is whether the page is shipped from the server or dynamically rendered in the client.
+
+  
+
+  
