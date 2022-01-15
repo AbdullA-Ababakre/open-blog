@@ -22,7 +22,7 @@ Types of NoSQL Databases:
 - Document-oriented
 
 
-## Steps
+## Steps(SQL)
 
 
 - install mysql server and mysql workbench
@@ -70,15 +70,18 @@ connection.query(
 > sequelize is the third package library ,an object-relational mapping library,which convenients us to write the javascript object code rather than sql command .
 
 
-
-
-
-
-
-
-
 ## 参考
 
 https://www.guru99.com/nosql-tutorial.html
 
 https://academind.com/tutorials/sql-vs-nosql
+
+
+## Steps(MongoDB)
+
+
+- create mongoDB atlas [mongoDB Atlas](https://www.mongodb.com/cloud/atlas/lp/try2?utm_source=google&utm_campaign=gs_footprint_row_search_core_brand_atlas_desktop&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624584&adgroup=115749713703&gclid=Cj0KCQiA_c-OBhDFARIsAIFg3ezZ5r7rycYS26_9H2-raqb5zj_kZy6ITb7_U-d-B-GjJuBtJ52oVQYaAqBlEALw_wcB)
+
+- create cluster ,create user ,add IP address
+
+- 
