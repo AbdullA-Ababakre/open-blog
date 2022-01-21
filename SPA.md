@@ -12,6 +12,10 @@ Html is for layout ,css is for styling and javascript is for logic.
 
 App is seperated baseed on components.Each component is responsible for one main functionality  of the application.Example,addPost.js is only handles submitting a post and editPost.js only handles editing the post.
 
+The server delivers a single HTML bundle when the user first loads the application,and any changes in the UI(which may appear as different pages to the user) are the result of Javascript manipulating the DOM in response to user activity or network events.
+
+SPAs still need to communicate frequently with the server ,but HTML is useally only sent as part of that first request .After that ,only JOSN data and static assets are transferred between the client and server.
+
 The layoput,styling,logic can be contained in the same file with the jsx.
 
 - Single Html file 
@@ -29,4 +33,3 @@ The layoput,styling,logic can be contained in the same file with the jsx.
 
 
 
-this is a blog
