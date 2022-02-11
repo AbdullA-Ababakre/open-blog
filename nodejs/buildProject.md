@@ -1,11 +1,13 @@
 1. install express
 
+npm i express
+
 ````
 const express = require('express');
 const app = express();
 ````
 
-2. install body parser 
+1. install body parser 
 
 > body parser is a middleware which is maintained by the express team to extracts the entire body portion of an incoming request stream and exposes it on req.body.
 
@@ -25,6 +27,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 ````
 
 1. set the  rendering engine 
+
+install ejs
+
+npm install ejs
 
 ````
 app.set('view engine', 'ejs');
