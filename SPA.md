@@ -33,3 +33,12 @@ The layoput,styling,logic can be contained in the same file with the jsx.
 
 
 
+### MPA
+
+
+
+### The comparison
+
+
+https://docs.astro.build/en/concepts/mpa-vs-spa/
+
